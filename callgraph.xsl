@@ -10,15 +10,19 @@
 <xsl:output method="text"/>
 
 <xsl:template match="/">
+<xsl:text>digraph callgraph {
+</xsl:text>
    <xsl:apply-templates select=".//src:function"/>
+<xsl:text>}
+</xsl:text>
 </xsl:template>
 
 <xsl:template match="src:function">
     <xsl:variable name="function" select="src:name"/>
     <xsl:for-each select=".//src:call/src:name">
-    <xsl:text>    </xsl:text><xsl:value-of select="$function"/>-<xsl:text disable-output-escaping="yes">&gt;</xsl:text><xsl:value-of select="."/><xsl:text>
+<xsl:text>    </xsl:text><xsl:value-of select="$function"/>-<xsl:text disable-output-escaping="yes">&gt;</xsl:text><xsl:value-of select="."/><xsl:text>
 </xsl:text>
-</xsl:for-each>
+    </xsl:for-each>
 </xsl:template>
 
 </xsl:stylesheet>
